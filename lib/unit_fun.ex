@@ -5,4 +5,8 @@ defmodule UnitFun do
     %Value{value: left + right, units: x}
   end
 
+  def subtract(left, %Value{value: right, units: units}) do
+    add(left, %Value{value: -right, units: units})
+  end
+
 end
