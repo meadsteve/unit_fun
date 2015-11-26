@@ -4,6 +4,7 @@ defmodule UnitFunTest do
 
   alias UnitFunTest.Meters
   alias UnitFunTest.Seconds
+  alias UnitFun.Errors.MissingConversionError
 
   import UnitFun, only: [{:add, 2}]
 
@@ -19,7 +20,7 @@ defmodule UnitFunTest do
     value_one = %Value{value: 2, units: Meters.unit}
     value_two = %Value{value: 5, units: Seconds.unit}
 
-    assert_raise Protocol.UndefinedError, fn ->
+    assert_raise MissingConversionError, fn ->
       value_one |> add(value_two)
     end
   end

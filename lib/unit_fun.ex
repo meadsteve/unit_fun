@@ -1,6 +1,7 @@
 defmodule UnitFun do
   alias UnitFun.Value
   alias UnitFun.Convertor
+  alias UnitFun.Errors.MissingConversionError
 
   def add(%Value{value: left, units: x}, %Value{value: right, units: x}) do
     %Value{value: left + right, units: x}
@@ -16,7 +17,15 @@ defmodule UnitFun do
   end
 
   defp convert_to(%{units: units, value: value}, to_units) do
-    Convertor.convert(to_units, units.__struct__, value)
+    from_units = units.__struct__
+    try do
+      Convertor.convert(to_units, from_units, value)
+    rescue
+      _ in FunctionClauseError
+        -> raise MissingConversionError, message: "Can't convert #{from_units} into #{to_units}"
+      _ in Protocol.UndefinedError
+        -> raise MissingConversionError, message: "No conversions into #{to_units} implemented"
+    end
   end
 
 end
