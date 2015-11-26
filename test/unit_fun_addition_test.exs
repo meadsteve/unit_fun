@@ -1,12 +1,12 @@
-defmodule UnitFunTest do
+defmodule UnitFunAdditionTest do
   use ExUnit.Case
   alias UnitFun.Value
 
-  alias UnitFunTest.Meters
-  alias UnitFunTest.Seconds
+  alias UnitFunAdditionTest.Meters
+  alias UnitFunAdditionTest.Seconds
   alias UnitFun.Errors.MissingConversionError
 
-  import UnitFun, only: [{:add, 2}, {:equal, 2}]
+  import UnitFun, only: [{:add, 2}]
 
   test "Addition of matching units works" do
     value_one = %Value{value: 2, units: Meters.unit}
@@ -24,19 +24,13 @@ defmodule UnitFunTest do
       value_one |> add(value_two)
     end
   end
-
-  test "matching units can be compared" do
-    value_one = %Value{value: 2, units: Meters.unit}
-    value_two = %Value{value: 2, units: Meters.unit}
-    assert value_one |> equal(value_two)
-  end
 end
 
 
-defmodule UnitFunTest.Meters do
+defmodule UnitFunAdditionTest.Meters do
   use UnitFun.Unit
 end
 
-defmodule UnitFunTest.Seconds do
+defmodule UnitFunAdditionTest.Seconds do
   use UnitFun.Unit
 end

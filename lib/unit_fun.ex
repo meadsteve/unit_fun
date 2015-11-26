@@ -1,5 +1,6 @@
 defmodule UnitFun do
   alias UnitFun.Value
+  alias UnitFun.Units.CompositeUnit
   import UnitFun.Conversion.ConversionHelper, only: [convert_to: 2]
 
   def add(%Value{value: left, units: x}, %Value{value: right, units: x}) do
@@ -13,6 +14,11 @@ defmodule UnitFun do
 
   def subtract(left, %Value{value: right, units: units}) do
     add(left, %Value{value: -right, units: units})
+  end
+
+  def multiply(%Value{value: left, units: x}, %Value{value: right, units: y}) do
+    new_units = x |> CompositeUnit.multiply_unit(y)
+    %Value{value: left * right, units: new_units}
   end
 
   def equal(%Value{value: left, units: x}, %Value{value: right, units: x}) do
