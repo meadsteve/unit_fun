@@ -1,9 +1,9 @@
-defmodule UnitFunUsingTest do
+defmodule UnitFun.MathsOperatorsTest do
   use ExUnit.Case
   alias UnitFun.Value
 
   # This will switch + out to use the UnitFun version
-  use UnitFun
+  use UnitFun.MathsOperators
 
   test "Addition of matching units works using the + symbol" do
     value_one = %Value{value: 2, units: :meters}
