@@ -12,4 +12,8 @@ defmodule UnitFun.Units.CompositeUnit do
   def multiply_unit(%{type: :primitive_unit} = first, %{type: :primitive_unit} = second) do
     new_with_numerator(first) |> multiply_unit(second)
   end
+
+  def multiply_unit(first_module, second_module) do
+    new_with_numerator(first_module.unit) |> multiply_unit(second_module.unit)
+  end
 end

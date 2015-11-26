@@ -3,11 +3,12 @@ defmodule UnitFun.ExampleTest do
 
   alias UnitFun.ExampleTest.Kilometers
   alias UnitFun.ExampleTest.Miles
+  alias UnitFun.Units.CompositeUnit
 
   use UnitFun.MathsOperators
   import UnitFun.UnitTypes
 
-  test "Full example" do
+  test "Full example - single units" do
     distance_on_foot = 4 <~ Kilometers
     distance_by_train = 100 <~ Miles
 
@@ -16,6 +17,19 @@ defmodule UnitFun.ExampleTest do
 
     assert distance_on_foot + distance_by_train  == expected_total_distance_in_km
     assert distance_on_foot + distance_by_train  == expected_total_distance_in_miles
+  end
+
+  test "Full example - squared units" do
+    km_squared = Kilometers
+      |> CompositeUnit.multiply_unit Kilometers
+
+    edge = 4 <~ Kilometers
+
+    area = edge * edge
+
+    expected_area_in_km_squared = 16 <~ km_squared
+
+    assert area  == expected_area_in_km_squared
   end
 
 end
