@@ -23,6 +23,13 @@ defmodule UnitFun.MathsOperatorsTest do
     assert value_one - value_two == expected_result
   end
 
+  test "equality of matching units works using the == symbol" do
+    value_one = %Value{value: 2, units: Meters.unit}
+    value_two = %Value{value: 2, units: Meters.unit}
+
+    assert value_one == value_two
+  end
+
 end
 
 defmodule UnitFunTest.MathsOperatorsTest.Meters do
