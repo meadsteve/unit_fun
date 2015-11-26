@@ -8,11 +8,11 @@ defmodule UnitFun.ExampleTest do
   import UnitFun.UnitTypes
 
   test "Full example" do
-    distance_on_foot = 4 |> with_units Kilometers
-    distance_by_train = 100 |> with_units Miles
+    distance_on_foot = 4 <~ Kilometers
+    distance_by_train = 100 <~ Miles
 
-    expected_total_distance_in_km    = 164   |> with_units Kilometers
-    expected_total_distance_in_miles = 102.5 |> with_units Miles
+    expected_total_distance_in_km    = 164 <~ Kilometers
+    expected_total_distance_in_miles = 102.5 <~ Miles
 
     assert distance_on_foot + distance_by_train  == expected_total_distance_in_km
     assert distance_on_foot + distance_by_train  == expected_total_distance_in_miles
@@ -35,6 +35,6 @@ defimpl UnitFun.Convertor, for: UnitFun.ExampleTest.Kilometers do
   alias UnitFun.ExampleTest.Kilometers
 
   def convert(_, Miles, value) do
-    (value * 1.6) |> with_units Kilometers
+    (value * 1.6) <~ Kilometers
   end
 end
