@@ -4,7 +4,6 @@ defmodule UnitFunMulitplicationTest do
 
   alias UnitFunMulitplicationTest.Meters
   alias UnitFunMulitplicationTest.Newtons
-  alias UnitFunMulitplicationTest.Miles
 
   alias UnitFun.Units.CompositeUnit
 

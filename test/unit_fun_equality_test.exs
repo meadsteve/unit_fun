@@ -2,7 +2,6 @@ defmodule UnitFunEqualityTest do
   use ExUnit.Case
   alias UnitFun.Value
   alias UnitFun.Units.CompositeUnit
-  alias UnitFun.Errors.MissingConversionError
 
   alias UnitFunEqualityTest.Meters
   alias UnitFunEqualityTest.Newtons

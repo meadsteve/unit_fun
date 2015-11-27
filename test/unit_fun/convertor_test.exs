@@ -51,11 +51,9 @@ defmodule UnitFun.ConvertorTest.Furlongs do
 end
 
 defimpl UnitFun.Convertor, for: UnitFun.ConvertorTest.Kilometers do
-  alias UnitFun.Value
   alias UnitFun.ConvertorTest.Miles
-  alias UnitFun.ConvertorTest.Kilometers
 
   def convert(_, Miles, value) do
-    %Value{value: value * 1.6, units: Kilometers.unit}
+    value * 1.6
   end
 end

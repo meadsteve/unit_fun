@@ -56,11 +56,9 @@ defmodule UnitFun.ExampleTest.Miles do
 end
 
 defimpl UnitFun.Convertor, for: UnitFun.ExampleTest.Kilometers do
-  import UnitFun.UnitTypes
   alias UnitFun.ExampleTest.Miles
-  alias UnitFun.ExampleTest.Kilometers
 
   def convert(_, Miles, value) do
-    (value * 1.6) <~ Kilometers
+    (value * 1.6)
   end
 end

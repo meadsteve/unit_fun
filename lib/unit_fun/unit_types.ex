@@ -10,6 +10,10 @@ defmodule UnitFun.UnitTypes do
     %Value{value: value, units: unit_module.unit}
   end
 
+  def with_units(value, %{type: :primitive_unit} = unit) do
+    %Value{value: value, units: unit}
+  end
+
   def left <~ right do
     with_units(left, right)
   end
