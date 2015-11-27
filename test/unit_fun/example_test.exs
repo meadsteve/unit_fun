@@ -28,8 +28,20 @@ defmodule UnitFun.ExampleTest do
     area = edge * edge
 
     expected_area_in_km_squared = 16 <~ km_squared
+    assert area == expected_area_in_km_squared
+  end
 
-    assert area  == expected_area_in_km_squared
+  test "Full example - cubic units" do
+    km_cubed = Kilometers
+      |> CompositeUnit.multiply_unit Kilometers
+      |> CompositeUnit.multiply_unit Kilometers
+
+    edge = 3 <~ Kilometers
+
+    volume = edge * edge * edge
+
+    expected_vol_in_cubic_km = 27 <~ km_cubed
+    assert volume == expected_vol_in_cubic_km
   end
 
 end
