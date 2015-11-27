@@ -33,14 +33,11 @@ item_cost + item_tax
 Conversions can be defined:
 ```elixir
 defimpl UnitFun.Convertor, for: Pence do
-  def convert(_, Pounds, value) do
-    (value * 100)
-  end
+  def convert(_, Pounds, value), do: (value * 100)
 end
+
 defimpl UnitFun.Convertor, for: Pounds do
-  def convert(_, Pence, value) do
-    (value / 100)
-  end
+  def convert(_, Pence, value), do: (value / 100)
 end
 ```
 And now the following:
