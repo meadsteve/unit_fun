@@ -9,17 +9,22 @@ defmodule UnitFun.Components.Equality do
     left == right
   end
 
-  def equal(%Value{units: left_units} = left_side, %Value{units: right_units} = right_side) do
+  def equal(%Value{} = left, %Value{} = right) do
     updated_right_side = try do
-      right_side |> convert_to(left_units)
+      right |> convert_to(left.units)
     rescue
-      e in MissingConversionError
-        -> raise CannotCompareError, message: "Can't compare #{left_units} to #{right_units}. " <> e.message
+      e in MissingConversionError -> raise_cannot_compare_error(e, left, right)
     end
-    equal(left_side, updated_right_side)
+    equal(left, updated_right_side)
   end
 
   def equal(left, right) do
     left == right
   end
+
+  defp raise_cannot_compare_error(e, left, right) do
+    message = "Can't compare #{left.units} to #{right.units}. " <> e.message
+    raise CannotCompareError, message: message
+  end
+  
 end
