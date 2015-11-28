@@ -3,7 +3,6 @@ defmodule UnitFun.ExampleTest do
 
   alias UnitFun.ExampleTest.Kilometers
   alias UnitFun.ExampleTest.Miles
-  alias UnitFun.Units.CompositeUnit
 
   use UnitFun.MathsOperators
   import UnitFun.UnitTypes
@@ -20,8 +19,7 @@ defmodule UnitFun.ExampleTest do
   end
 
   test "Full example - squared units" do
-    km_squared = Kilometers
-      |> CompositeUnit.multiply_unit Kilometers
+    km_squared = Kilometers * Kilometers
 
     edge = 4 <~ Kilometers
 
@@ -32,9 +30,7 @@ defmodule UnitFun.ExampleTest do
   end
 
   test "Full example - cubic units" do
-    km_cubed = Kilometers
-      |> CompositeUnit.multiply_unit Kilometers
-      |> CompositeUnit.multiply_unit Kilometers
+    km_cubed = Kilometers * Kilometers * Kilometers
 
     edge = 3 <~ Kilometers
 
