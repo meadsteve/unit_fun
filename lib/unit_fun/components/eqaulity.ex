@@ -1,6 +1,5 @@
 defmodule UnitFun.Components.Equality do
   alias UnitFun.Value
-  alias UnitFun.Units.CompositeUnit
   import UnitFun.Conversion.ConversionHelper, only: [convert_to: 2]
 
   alias UnitFun.Errors.CannotCompareError
