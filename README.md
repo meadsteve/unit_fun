@@ -48,3 +48,23 @@ total = item_cost + item_tax
 # returns: %UnitFun.Value{value: 600, units: Pence}
 total_in_pence = total <~ Pence
 ```
+
+## Example squared
+New units can also be composed by multiplying existing units together:
+
+```elixir
+  use UnitFun.MathsOperators
+  import UnitFun.UnitTypes
+  
+  km_squared = Kilometers * Kilometers
+```
+
+These newly defined units can then be used as with all previous examples
+```elixir
+  edge = 4 <~ Kilometers
+
+  area = edge * edge
+
+  expected_area = 16 <~ km_squared
+  assert area == expected_area
+```
