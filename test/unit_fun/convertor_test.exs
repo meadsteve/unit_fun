@@ -2,6 +2,7 @@ defmodule UnitFun.ConvertorTest do
   use ExUnit.Case
   alias UnitFun.Value
   alias UnitFun.Errors.MissingConversionError
+  alias UnitFun.Conversion.ConversionHelper
 
   alias UnitFun.ConvertorTest.Kilometers
   alias UnitFun.ConvertorTest.Miles
@@ -33,6 +34,13 @@ defmodule UnitFun.ConvertorTest do
     assert_raise MissingConversionError, message, fn ->
       value_one |> UnitFun.add(value_two)
     end
+  end
+
+  test "Protocol is used when directly invoked by helper" do
+    value_one = %Value{value: 1, units: Miles.unit}
+
+    expected_value = %Value{value: 1.6, units: Kilometers.unit}
+    assert value_one |> ConversionHelper.convert_to(Kilometers.unit) == expected_value
   end
 
 end
