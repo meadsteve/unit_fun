@@ -1,5 +1,6 @@
 UnitFun
 =======
+[![Build Status](https://travis-ci.org/meadsteve/unit_fun.svg)](https://travis-ci.org/meadsteve/unit_fun)
 
 Attempt to add units to numbers in elixir to give some added type saftey when dealing with numeric quantities.
 
