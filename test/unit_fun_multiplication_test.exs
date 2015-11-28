@@ -31,6 +31,14 @@ defmodule UnitFunMulitplicationTest do
     assert value_one |> multiply(value_two) == expected
   end
 
+  test "multiplication works when given bare numbers" do
+    value_one = 2
+    value_two = 5
+
+    expected = 10
+    assert value_one |> multiply(value_two) == expected
+  end
+
 end
 
 defmodule UnitFunMulitplicationTest.Meters do

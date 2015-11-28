@@ -23,6 +23,14 @@ defmodule UnitFunEqualityTest do
 
     assert value_one |> equal(value_two)
   end
+
+
+  test "bare values can be compared" do
+    value_one = 2
+    value_two = 2
+    assert value_one |> equal(value_two)
+  end
+
 end
 
 defmodule UnitFunEqualityTest.Meters do

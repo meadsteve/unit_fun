@@ -24,6 +24,14 @@ defmodule UnitFunAdditionTest do
       value_one |> add(value_two)
     end
   end
+
+  test "Adding plain numbers falls back to the kernal add/2 func" do
+    value_one = 2
+    value_two = 5
+
+    assert value_one |> add(value_two) == 7
+  end
+
 end
 
 
