@@ -42,6 +42,9 @@ end
 ```
 And now the following:
 ```elixir
-# returns: %UnitFun.Value{value: 6, units: pounds}
-item_cost + item_tax
+# returns: %UnitFun.Value{value: 6, units: Pounds}
+total = item_cost + item_tax
+
+total_in_pence = total <~ Pence
+# returns: %UnitFun.Value{value: 600, units: Pence}
 ```
