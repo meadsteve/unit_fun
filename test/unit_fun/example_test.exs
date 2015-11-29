@@ -3,6 +3,7 @@ defmodule UnitFun.ExampleTest do
 
   alias UnitFun.ExampleTest.Kilometers
   alias UnitFun.ExampleTest.Miles
+  alias UnitFun.ExampleTest.Hours
 
   use UnitFun.MathsOperators
   import UnitFun.UnitTypes
@@ -17,8 +18,12 @@ defmodule UnitFun.ExampleTest do
     assert distance_on_foot + distance_by_train  == expected_total_distance_in_km
     assert distance_on_foot + distance_by_train  == expected_total_distance_in_miles
 
-    half_the_walk = distance_on_foot / 2
-    assert half_the_walk == 2 <~ Kilometers
+    miles_per_hour = Miles / Hours
+    speed = 40 <~ miles_per_hour
+    time_spent_travelling = 2 <~ Hours
+
+    distance_travelled_in_two_hours = time_spent_travelling * speed
+    assert distance_travelled_in_two_hours == 80 <~ Miles
   end
 
   test "Full example - squared units" do
@@ -51,6 +56,10 @@ defmodule UnitFun.ExampleTest.Kilometers do
 end
 
 defmodule UnitFun.ExampleTest.Miles do
+  use UnitFun.Unit
+end
+
+defmodule UnitFun.ExampleTest.Hours do
   use UnitFun.Unit
 end
 
