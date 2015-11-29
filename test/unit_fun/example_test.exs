@@ -16,6 +16,9 @@ defmodule UnitFun.ExampleTest do
 
     assert distance_on_foot + distance_by_train  == expected_total_distance_in_km
     assert distance_on_foot + distance_by_train  == expected_total_distance_in_miles
+
+    half_the_walk = distance_on_foot / 2
+    assert half_the_walk == 2 <~ Kilometers
   end
 
   test "Full example - squared units" do

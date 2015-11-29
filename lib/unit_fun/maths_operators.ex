@@ -2,7 +2,7 @@ defmodule UnitFun.MathsOperators do
 
   defmacro __using__(_opts) do
     quote do
-      import Kernel, except: [{:+, 2}, {:-, 2}, {:==, 2}, {:*, 2}]
+      import Kernel, except: [{:+, 2}, {:-, 2}, {:==, 2}, {:*, 2}, {:/, 2}]
       alias UnitFun.Units.CompositeUnit
 
       def left + right do
@@ -24,6 +24,10 @@ defmodule UnitFun.MathsOperators do
 
       def left * right do
         UnitFun.multiply(left, right)
+      end
+
+      def left / right do
+        UnitFun.divide(left, right)
       end
 
       def left == right do
