@@ -1,5 +1,5 @@
 defmodule UnitFun.Units.CompositeUnit do
-  defstruct numerators: []
+  defstruct numerators: [], denominators: []
 
   def new_with_numerator(%{type: :primitive_unit} = unit) do
     %__MODULE__{numerators: [unit]}
