@@ -1,10 +1,11 @@
 defmodule UnitFunDivisionTest do
   use ExUnit.Case
   alias UnitFun.Value
+  alias UnitFun.Units.CompositeUnit
 
   alias UnitFunDivisionTest.Meters
   alias UnitFunDivisionTest.Miles
-  #alias UnitFunDivisionTest.Newtons
+  alias UnitFunDivisionTest.Second
 
 
   import UnitFun, only: [{:divide, 2}]
@@ -25,6 +26,17 @@ defmodule UnitFunDivisionTest do
     assert value_one |> divide(value_two) == expected
   end
 
+  test "division of inconvertable units returns result with new units" do
+    value_one = %Value{value: 10, units: Meters.unit}
+    value_two = %Value{value: 2, units: Second.unit}
+
+
+    meters_per_second = Meters.unit
+      |> CompositeUnit.divide_unit(Second.unit)
+
+    expected = %Value{value: 5, units: meters_per_second}
+    assert value_one |> divide(value_two) == expected
+  end
   test "division by a scalar quantitiy keeps the same units" do
     value_one = %Value{value: 10, units: Meters.unit}
     value_two = 5
@@ -47,7 +59,7 @@ defmodule UnitFunDivisionTest.Meters do
   use UnitFun.Unit
 end
 
-defmodule UnitFunDivisionTest.Newtons do
+defmodule UnitFunDivisionTest.Second do
   use UnitFun.Unit
 end
 

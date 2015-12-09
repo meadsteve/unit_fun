@@ -1,5 +1,7 @@
 defmodule UnitFun.Components.Divide do
   alias UnitFun.Value
+  alias UnitFun.Errors.MissingConversionError
+  alias UnitFun.Units.CompositeUnit
   import UnitFun.Conversion.ConversionHelper, only: [convert_to: 2]
 
   def divide(%Value{value: left, units: x}, %Value{value: right, units: x}) do
@@ -7,8 +9,12 @@ defmodule UnitFun.Components.Divide do
   end
 
   def divide(%Value{units: left_units} = left, %Value{} = right) do
-    updated_right = right |> convert_to(left_units)
-    divide(left, updated_right)
+    try do
+      updated_right = right |> convert_to(left_units)
+      divide(left, updated_right)
+    rescue
+      _e in MissingConversionError -> composite_unit_div(left, right)
+    end
   end
 
   def divide(%Value{value: left, units: units}, scalar_right) do
@@ -17,6 +23,11 @@ defmodule UnitFun.Components.Divide do
 
   def divide(left, right) do
     left / right
+  end
+
+  defp composite_unit_div(left, right) do
+    new_units = CompositeUnit.divide_unit(left.units, right.units)
+    %Value{value: left.value / right.value, units: new_units}
   end
 
 end
