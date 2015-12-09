@@ -2,12 +2,23 @@ defmodule UnitFun.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :unit_fun,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+    [
+      app: :unit_fun,
+      name: "Unit Fun",
+      description: """
+      Library for adding units/dimensions to numeric types.
+      """,
+      package: [
+        maintainers: ["Steve Brazier"],
+        licenses: ["MIT"],
+        links: %{"GitHub" => "https://github.com/meadsteve/unit_fun"},
+      ],
+      version: "0.1.0",
+      elixir: "~> 1.0",
+      build_embedded: Mix.env == :prod,
+      start_permanent: Mix.env == :prod,
+      deps: deps
+   ]
   end
 
   # Configuration for the OTP application
