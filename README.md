@@ -56,7 +56,7 @@ New units can also be composed by multiplying existing units together:
 ```elixir
   use UnitFun.MathsOperators
   import UnitFun.UnitTypes
-  
+
   km_squared = Kilometers * Kilometers
 ```
 
@@ -68,4 +68,17 @@ These newly defined units can then be used as with all previous examples
 
   expected_area = 16 <~ km_squared
   assert area == expected_area
+```
+
+Dividing/multiplying by united types returns values with new types so correctness can be asserted on.
+```elixir
+  miles_per_hour = Miles / Hours
+
+  speed = 40 <~ miles_per_hour
+  time_spent_travelling = 2 <~ Hours
+
+  #the distance will be in Miles as the hours cancel out
+  distance_travelled_in_two_hours = time_spent_travelling * speed
+
+  assert distance_travelled_in_two_hours == 80 <~ Miles
 ```
