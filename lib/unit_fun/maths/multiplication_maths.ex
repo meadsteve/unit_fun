@@ -1,9 +1,9 @@
-defprotocol UnitFun.Maths.MultiplicationMaths do
+defprotocol UnitFun.Maths.DivisionMaths do
   @fallback_to_any true
 
-  def multiply(left, right)
+  def divide(left, right)
 end
 
-defimpl UnitFun.Maths.MultiplicationMaths, for: Any do
-  def multiply(left, right), do: left * right
+defimpl UnitFun.Maths.DivisionMaths, for: Any do
+  def divide(left, right), do: left / right
 end
