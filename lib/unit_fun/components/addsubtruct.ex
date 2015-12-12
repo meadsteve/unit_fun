@@ -5,7 +5,7 @@ defmodule UnitFun.Components.AddSubtract do
 
   for method <- [:add, :subtract] do
     def unquote(method)(%Value{units: x} = left, %Value{units: x} = right) do
-      new_value = AddSubtractMaths.unquote(method)(left.value, right.value)
+      new_value = AddSubtractMaths.unquote(method)(x, left.value, right.value)
       %Value{value: new_value, units: x}
     end
 

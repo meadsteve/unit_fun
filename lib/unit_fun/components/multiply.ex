@@ -5,12 +5,12 @@ defmodule UnitFun.Components.Multiply do
 
   def multiply(%Value{value: left, units: x}, %Value{value: right, units: y}) do
     new_units = x |> CompositeUnit.multiply_unit(y)
-    new_value = MultiplicationMaths.multiply(left, right)
+    new_value = MultiplicationMaths.multiply(x, left, right)
     %Value{value: new_value, units: new_units}
   end
 
   def multiply(%Value{value: left, units: units}, scalar_right) do
-    new_value = MultiplicationMaths.multiply(left, scalar_right)
+    new_value = MultiplicationMaths.multiply(units, left, scalar_right)
     %Value{value: new_value, units: units}
   end
 

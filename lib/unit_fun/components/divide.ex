@@ -6,7 +6,7 @@ defmodule UnitFun.Components.Divide do
   import UnitFun.Conversion.ConversionHelper, only: [convert_to: 2]
 
   def divide(%Value{value: left, units: x}, %Value{value: right, units: x}) do
-    DivisionMaths.divide(left, right)
+    DivisionMaths.divide(x, left, right)
   end
 
   def divide(%Value{units: left_units} = left, %Value{} = right) do
@@ -19,7 +19,7 @@ defmodule UnitFun.Components.Divide do
   end
 
   def divide(%Value{value: left, units: units}, scalar_right) do
-    new_value = DivisionMaths.divide(left, scalar_right)
+    new_value = DivisionMaths.divide(units, left, scalar_right)
     %Value{value: new_value, units: units}
   end
 
@@ -29,7 +29,7 @@ defmodule UnitFun.Components.Divide do
 
   defp composite_unit_div(left, right) do
     new_units = CompositeUnit.divide_unit(left.units, right.units)
-    new_value = DivisionMaths.divide(left.value, right.value)
+    new_value = DivisionMaths.divide(left.units, left.value, right.value)
     %Value{value: new_value, units: new_units}
   end
 
