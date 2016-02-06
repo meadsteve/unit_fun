@@ -1,15 +1,20 @@
 defmodule UnitFun do
+
   alias UnitFun.Components.Equality
   alias UnitFun.Components.Multiply
   alias UnitFun.Components.Divide
   alias UnitFun.Components.AddSubtract
+
   alias UnitFun.Units.UnitSimplifier
+  alias UnitFun.UnitTypes
 
   def equal(left, right), do: Equality.equal(left, right) |> simplify
   def multiply(left, right), do: Multiply.multiply(left, right) |> simplify
   def divide(left, right), do: Divide.divide(left, right) |> simplify
   def add(left, right), do: AddSubtract.add(left, right) |> simplify
   def subtract(left, right), do: AddSubtract.subtract(left, right) |> simplify
+
+  def with_units(value, units), do: UnitTypes.with_units(value, units)
 
   defp simplify(unit), do: UnitSimplifier.simplify_unit(unit)
 end

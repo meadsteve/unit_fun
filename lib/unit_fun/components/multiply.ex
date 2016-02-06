@@ -3,6 +3,10 @@ defmodule UnitFun.Components.Multiply do
   alias UnitFun.Units.CompositeUnit
   alias UnitFun.Maths.MultiplicationMaths
 
+  def multiply(left, right) when is_atom(left) or is_atom(right)  do
+    left |> CompositeUnit.multiply_unit(right)
+  end
+
   def multiply(%Value{value: left, units: x}, %Value{value: right, units: y}) do
     new_units = x |> CompositeUnit.multiply_unit(y)
     new_value = MultiplicationMaths.multiply(x, left, right)

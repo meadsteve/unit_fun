@@ -5,6 +5,10 @@ defmodule UnitFun.Components.Divide do
   alias UnitFun.Maths.DivisionMaths
   import UnitFun.Conversion.ConversionHelper, only: [convert_to: 2]
 
+  def divide(left, right) when is_atom(left) or is_atom(right)  do
+    left |> CompositeUnit.divide_unit(right)
+  end
+
   def divide(%Value{value: left, units: x}, %Value{value: right, units: x}) do
     DivisionMaths.divide(x, left, right)
   end

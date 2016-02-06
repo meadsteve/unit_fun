@@ -13,15 +13,6 @@ defmodule UnitFun.MathsOperators do
         left |> UnitFun.subtract(right)
       end
 
-      # allow unit atoms to be built up using the mutliply/divide symbols
-      def left * right when is_atom(left) or is_atom(right)  do
-        left |> CompositeUnit.multiply_unit(right)
-      end
-
-      def left / right when is_atom(left) or is_atom(right)  do
-        left |> CompositeUnit.divide_unit(right)
-      end
-
       def left * right do
         left |> UnitFun.multiply(right)
       end
