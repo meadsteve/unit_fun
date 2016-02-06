@@ -13,7 +13,7 @@ defmodule UnitFun.Mixfile do
         licenses: ["MIT"],
         links: %{"GitHub" => "https://github.com/meadsteve/unit_fun"},
       ],
-      version: "0.1.0",
+      version: "0.2.0",
       elixir: "~> 1.0",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
@@ -38,6 +38,6 @@ defmodule UnitFun.Mixfile do
   #
   # Type `mix help deps` for more examples and options
   defp deps do
-    [{ :decimal, "~> 1.1.0" }]
+    []
   end
 end
