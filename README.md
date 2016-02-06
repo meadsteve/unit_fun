@@ -38,6 +38,8 @@ defimpl UnitFun.Convertor, for: Pence do
 end
 
 defimpl UnitFun.Convertor, for: Pounds do
+  #Note: please don't actually do a divison for any financial maths
+  # You're going to lose data and have a bad time.
   def convert(_, Pence, value), do: (value / 100)
 end
 ```
