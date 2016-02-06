@@ -3,10 +3,11 @@ defmodule UnitFun.Units.UnitSimplifier do
 
   def simplify_unit(%UnitFun.Value{value: value, units: units}) do
     %UnitFun.Value{value: value, units: simplify_unit(units)}
+      |> try_flatten
   end
 
-  def simplify_unit(type) do
-    type
+  def simplify_unit(unit) do
+    unit
       |> cancel_out
       |> try_flatten
   end
@@ -26,7 +27,17 @@ defmodule UnitFun.Units.UnitSimplifier do
   defp try_flatten(%CompositeUnit{numerators: [single_unit], denominators: []}) do
     single_unit
   end
-  defp try_flatten(unit), do: unit
+
+  defp try_flatten(%UnitFun.Value{
+    value: plain_value,
+    units: %CompositeUnit{numerators: [], denominators: []}})
+  do
+    plain_value
+  end
+
+  defp try_flatten(x), do: x
+
+  defp strip_empty_units(%UnitFun.Value{} = v), do: v
 
   defp count_up_unit_list(thing) do
     thing

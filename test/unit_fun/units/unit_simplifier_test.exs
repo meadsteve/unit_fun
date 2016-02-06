@@ -26,6 +26,15 @@ defmodule UnitFun.Units.UnitSimplifierTests do
     assert (UnitSimplifier.simplify_unit(complex)) == expected
   end
 
+  test "Complex types that cancel to 1 will return bare values" do
+    complex_and_pointless = CompositeUnit.new_with_numerator(Meters.unit)
+      |> CompositeUnit.divide_unit(Meters.unit)
+
+    value = 5 |> UnitFun.with_units(complex_and_pointless)
+
+    assert (UnitSimplifier.simplify_unit(value)) == 5
+  end
+
 end
 
 defmodule UnitFun.Units.UnitSimplifierTests.Meters do
