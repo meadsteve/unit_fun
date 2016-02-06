@@ -37,8 +37,6 @@ defmodule UnitFun.Units.UnitSimplifier do
 
   defp try_flatten(x), do: x
 
-  defp strip_empty_units(%UnitFun.Value{} = v), do: v
-
   defp count_up_unit_list(thing) do
     thing
       |> Enum.group_by(fn t ->
