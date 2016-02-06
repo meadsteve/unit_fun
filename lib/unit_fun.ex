@@ -3,11 +3,13 @@ defmodule UnitFun do
   alias UnitFun.Components.Multiply
   alias UnitFun.Components.Divide
   alias UnitFun.Components.AddSubtract
+  alias UnitFun.Units.UnitSimplifier
 
-  def equal(left, right), do: Equality.equal(left, right)
-  def multiply(left, right), do: Multiply.multiply(left, right)
-  def divide(left, right), do: Divide.divide(left, right)
-  def add(left, right), do: AddSubtract.add(left, right)
-  def subtract(left, right), do: AddSubtract.subtract(left, right)
+  def equal(left, right), do: Equality.equal(left, right) |> simplify
+  def multiply(left, right), do: Multiply.multiply(left, right) |> simplify
+  def divide(left, right), do: Divide.divide(left, right) |> simplify
+  def add(left, right), do: AddSubtract.add(left, right) |> simplify
+  def subtract(left, right), do: AddSubtract.subtract(left, right) |> simplify
 
+  defp simplify(unit), do: UnitSimplifier.simplify_unit(unit)
 end
