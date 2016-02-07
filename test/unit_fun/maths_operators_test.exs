@@ -31,7 +31,3 @@ defmodule UnitFun.MathsOperatorsTest do
   end
 
 end
-
-defmodule UnitFunTest.MathsOperatorsTest.Meters do
-  use UnitFun.Unit
-end
