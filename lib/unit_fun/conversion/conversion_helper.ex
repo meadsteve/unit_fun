@@ -1,10 +1,11 @@
 defmodule UnitFun.Conversion.ConversionHelper do
   alias UnitFun.Convertor
+  alias UnitFun.Units.CompositeUnit
   alias UnitFun.Errors.MissingConversionError
   import UnitFun.UnitTypes
 
   def convert_to(%{units: units, value: value}, to_units) do
-    from_units = units.__struct__
+    from_units = atom_or_composite(units)
     updated_val = try do
       Convertor.convert(to_units, from_units, value)
     rescue
@@ -15,5 +16,8 @@ defmodule UnitFun.Conversion.ConversionHelper do
     end
     updated_val <~ to_units
   end
+
+  defp atom_or_composite(%CompositeUnit{} = units), do: units
+  defp atom_or_composite(units), do: units.__struct__
 
 end
