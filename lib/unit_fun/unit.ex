@@ -2,6 +2,8 @@ defmodule UnitFun.Unit do
 
   defmacro __using__(_opts) do
     quote do
+      @behaviour UnitFun.UnitDefinition
+
       defstruct size: 1, type: :primitive_unit
 
       @unit_atom __MODULE__
