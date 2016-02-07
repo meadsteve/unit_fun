@@ -4,6 +4,7 @@ defmodule UnitFun.ExampleTest do
   alias UnitFun.ExampleTest.Kilometers
   alias UnitFun.ExampleTest.Miles
   alias UnitFun.ExampleTest.Hours
+  alias UnitFun.ExampleTest.Pence
 
   use UnitFun.MathsOperators
   import UnitFun.UnitTypes
@@ -46,6 +47,14 @@ defmodule UnitFun.ExampleTest do
 
     expected_vol_in_cubic_km = 27 <~ km_cubed
     assert volume == expected_vol_in_cubic_km
+  end
+
+  test "overriden + - which doesn't allow floats" do
+    money_okay = 5 <~ Pence
+    money_not_okay = 5.4 <~ Pence
+    assert_raise FunctionClauseError, fn ->
+      money_not_okay + money_okay
+    end
   end
 
 end

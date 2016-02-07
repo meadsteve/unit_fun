@@ -7,7 +7,7 @@ Attempt to add units to numbers in elixir to give some added type saftey when de
 ## Why?
 One good example: pounds(dollars) should never be accidentally added to pence(cents) without conversion. Both are numeric. Wrapping the numeric data in a tuple with unit information seems like a good idea. This library gives a neat way of expressing this.
 
-## Example
+## Example - Basic
 First define some units:
 ```elixir
 defmodule Pounds do
@@ -31,6 +31,8 @@ item_tax = 100 <~ Pence # UnitFun.with_units(100, Pence)
 item_cost + item_tax # UnitFun.add(item_cost, item_tax)
 ```  
 
+## Example - Conversions
+
 Conversions can be defined:
 ```elixir
 defimpl UnitFun.Convertor, for: Pence do
@@ -52,7 +54,7 @@ total = item_cost + item_tax # UnitFun.add(item_cost, item_tax)
 total_in_pence = total <~ Pence # UnitFun.with_units(total, Pence)
 ```
 
-## Example squared
+## Example - Composite units
 New units can also be composed by multiplying existing units together:
 
 ```elixir
@@ -84,3 +86,19 @@ Dividing/multiplying by united types returns values with new types so correctnes
 
   assert distance_travelled_in_two_hours == 80 <~ Miles # UnitFun.with_units(80, Miles)
 ```
+
+## Example - Custom mathmatic functions.
+All the maths is controlled by protocols. So for example if you decided pence
+should only be handled as integers (so rounding isn't an issue) the following
+protocol could be defined:
+```elixir
+defimpl UnitFun.Maths.AddSubtractMaths, for: UnitFun.ExampleTest.Pence do
+  def add(_, left, right) when is_integer(left) and is_integer(right) do
+     left + right
+  end
+  def subtract(_, left, right) when is_integer(left) and is_integer(right) do
+    left - right
+  end
+end
+```
+Now any addition using non integer quantities will raise a FunctionClauseError.
