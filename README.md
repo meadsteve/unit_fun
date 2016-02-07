@@ -88,8 +88,8 @@ Dividing/multiplying by united types returns values with new types so correctnes
 ```
 
 ## Example - Custom mathmatic functions.
-All the maths is controlled by protocols. So for example if you decided pence
-should only be handled as integers (so rounding isn't an issue) the following
+All the maths is controlled by protocols.
+So for example if you decided pence should only be handled as integers (so rounding isn't an issue) the following
 protocol could be defined:
 ```elixir
 defimpl UnitFun.Maths.AddSubtractMaths, for: UnitFun.ExampleTest.Pence do
@@ -102,3 +102,4 @@ defimpl UnitFun.Maths.AddSubtractMaths, for: UnitFun.ExampleTest.Pence do
 end
 ```
 Now any addition using non integer quantities will raise a FunctionClauseError.
+For convinience if nothing is defined then the kernel +-/* are used. 
