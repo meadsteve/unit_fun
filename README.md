@@ -87,6 +87,20 @@ Dividing/multiplying by united types returns values with new types so correctnes
   assert distance_travelled_in_two_hours == 80 <~ Miles # UnitFun.with_units(80, Miles)
 ```
 
+## Example - Composite unit conversions
+If there's a single unit way of representing some composite units this conversion can also be defined (N.B. there's currently no way of defining a conversion from a simple unit to a composite one):
+```elixir
+defimpl UnitFun.Convertor, for: UnitFun.ConvertorComplexTest.Pascals do
+  alias UnitFun.ConvertorComplexTest.Meters
+  alias UnitFun.ConvertorComplexTest.Newtons
+  alias UnitFun.Units.CompositeUnit
+
+  def convert(_, %CompositeUnit{numerators: [%Newtons{}], denominators: [%Meters{}]}, value) do
+    value
+  end
+end
+```
+
 ## Example - Custom mathmatic functions.
 All the maths is controlled by protocols.
 So for example if you decided pence should only be handled as integers (so rounding isn't an issue) the following
