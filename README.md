@@ -54,6 +54,13 @@ total = item_cost + item_tax # UnitFun.add(item_cost, item_tax)
 total_in_pence = total <~ Pence # UnitFun.with_units(total, Pence)
 ```
 
+## Example - Assertion
+Errors can be raised if units aren't what they are expected to be:
+
+```elixir
+UnitFun.assert_units(total_money, Miles)
+```
+
 ## Example - Composite units
 New units can also be composed by multiplying existing units together:
 
@@ -116,4 +123,4 @@ defimpl UnitFun.Maths.AddSubtractMaths, for: UnitFun.ExampleTest.Pence do
 end
 ```
 Now any addition using non integer quantities will raise a FunctionClauseError.
-For convinience if nothing is defined then the kernel +-/* are used. 
+For convinience if nothing is defined then the kernel +-/* are used.

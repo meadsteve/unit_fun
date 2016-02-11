@@ -4,6 +4,7 @@ defmodule UnitFun do
   alias UnitFun.Components.Multiply
   alias UnitFun.Components.Divide
   alias UnitFun.Components.AddSubtract
+  alias UnitFun.Components.Assert
 
   alias UnitFun.Units.UnitSimplifier
   alias UnitFun.UnitTypes
@@ -15,6 +16,7 @@ defmodule UnitFun do
   def subtract(left, right), do: AddSubtract.subtract(left, right) |> simplify
 
   def with_units(value, units), do: UnitTypes.with_units(value, units)
+  def assert_units(value, units), do: Assert.assert_units(value, units)
 
   defp simplify(unit), do: UnitSimplifier.simplify_unit(unit)
 end

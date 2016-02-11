@@ -25,6 +25,7 @@ defmodule UnitFun.ExampleTest do
 
     distance_travelled_in_two_hours = time_spent_travelling * speed
     assert distance_travelled_in_two_hours == 80 <~ Miles
+    UnitFun.assert_units(distance_travelled_in_two_hours, Miles)
   end
 
   test "Full example - squared units" do
