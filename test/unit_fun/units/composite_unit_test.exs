@@ -22,6 +22,13 @@ defmodule UnitFun.Units.CompositeUnitTests do
     assert newton_meters == expected
   end
 
+  test "inverse units can be created" do
+    per_seconds = CompositeUnit.divide_unit(1, Seconds.unit)
+
+    expected = %CompositeUnit{numerators: [], denominators: [Seconds.unit]}
+    assert per_seconds == expected
+  end
+
   test "Composite units can be multipied together" do
     newton_meters = %CompositeUnit{numerators: [Newtons.unit, Meters.unit]}
     newton_per_second = %CompositeUnit{numerators: [Newtons.unit],

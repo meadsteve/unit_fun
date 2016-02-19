@@ -37,11 +37,22 @@ defmodule UnitFunDivisionTest do
     expected = %Value{value: 5, units: meters_per_second}
     assert value_one |> divide(value_two) == expected
   end
+
   test "division by a scalar quantitiy keeps the same units" do
     value_one = %Value{value: 10, units: Meters.unit}
     value_two = 5
 
     expected = %Value{value: 2, units: Meters.unit}
+    assert value_one |> divide(value_two) == expected
+  end
+
+  test "division of a scalar quantitiy by a united one inverts the units" do
+    value_one = 5
+    value_two = %Value{value: 1, units: Meters.unit}
+
+    inverse_meters = CompositeUnit.divide_unit(1, Meters.unit)
+
+    expected = %Value{value: 5, units: inverse_meters}
     assert value_one |> divide(value_two) == expected
   end
 

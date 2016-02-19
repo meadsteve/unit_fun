@@ -23,9 +23,13 @@ defmodule UnitFun.Units.CompositeUnit do
       |> order_elements
   end
 
+  def divide_unit(1, unit) do
+    divide_unit(%__MODULE__{}, unit)
+  end
+
   def standardise(%__MODULE__{} = type) do
     type
-      |> order_elements 
+      |> order_elements
   end
 
   for fun <- [:multiply_unit, :divide_unit] do
