@@ -40,13 +40,16 @@ defmodule UnitFun.Units.CompositeUnit do
     end
 
     def unquote(fun)(%{type: :primitive_unit} = first, %{type: :primitive_unit} = second) do
-      new_with_numerator(first) |> unquote(fun)(second)
+      first
+        |> new_with_numerator
+        |> unquote(fun)(second)
     end
 
     def unquote(fun)(first_module, second_module)
     when is_atom(first_module) and is_atom(second_module)
     do
-      new_with_numerator(first_module.unit)
+      first_module.unit
+        |> new_with_numerator
         |> unquote(fun)(second_module.unit)
     end
 
