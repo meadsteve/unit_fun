@@ -9,13 +9,13 @@ defmodule UnitFun do
   alias UnitFun.Units.UnitSimplifier
   alias UnitFun.UnitTypes
 
-  def equal(left, right), do: Equality.equal(left, right) |> simplify
-  def multiply(left, right), do: Multiply.multiply(left, right) |> simplify
-  def divide(left, right), do: Divide.divide(left, right) |> simplify
-  def add(left, right), do: AddSubtract.add(left, right) |> simplify
-  def subtract(left, right), do: AddSubtract.subtract(left, right) |> simplify
+  def equal(left, right),    do: left |> Equality.equal(right) |> simplify
+  def multiply(left, right), do: left |> Multiply.multiply(right) |> simplify
+  def divide(left, right),   do: left |> Divide.divide(right) |> simplify
+  def add(left, right),      do: left |> AddSubtract.add(right) |> simplify
+  def subtract(left, right), do: left |> AddSubtract.subtract(right) |> simplify
 
-  def with_units(value, units), do: UnitTypes.with_units(value, units)
+  def with_units(value, units),   do: UnitTypes.with_units(value, units)
   def assert_units(value, units), do: Assert.assert_units(value, units)
 
   defp simplify(unit), do: UnitSimplifier.simplify_unit(unit)
