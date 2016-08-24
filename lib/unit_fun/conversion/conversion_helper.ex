@@ -10,9 +10,11 @@ defmodule UnitFun.Conversion.ConversionHelper do
       Convertor.convert(to_units, from_units, value)
     rescue
       _ in FunctionClauseError
-        -> raise MissingConversionError, message: "Can't convert #{from_units} into #{to_units}"
+        -> raise MissingConversionError,
+           message: "Can't convert #{from_units} into #{to_units}"
       _ in Protocol.UndefinedError
-        -> raise MissingConversionError, message: "No conversions into #{to_units} implemented"
+        -> raise MissingConversionError,
+           message: "No conversions into #{to_units} implemented"
     end
     updated_val <~ to_units
   end
