@@ -9,13 +9,13 @@ defmodule UnitFun.UnitTypesTest do
   alias UnitFun.UnitTypesTest.Newtons
 
   test "with_units function converts to appropriate struct" do
-    value = 2 |> with_units Kilometers
+    value = 2 |> with_units(Kilometers)
     assert value == %Value{value: 2, units: Kilometers.unit}
   end
 
   test "with_units function converts values that already have units" do
-    value = 1 |> with_units Miles
-    changed_value = value |> with_units Kilometers
+    value = 1 |> with_units(Miles)
+    changed_value = value |> with_units(Kilometers)
     assert changed_value == %Value{value: 1.6, units: Kilometers.unit}
   end
 
@@ -23,7 +23,7 @@ defmodule UnitFun.UnitTypesTest do
     newton_kilometers = Kilometers.unit
       |> CompositeUnit.multiply_unit(Newtons.unit)
 
-    value = 2 |> with_units newton_kilometers
+    value = 2 |> with_units(newton_kilometers)
     assert value == %Value{value: 2, units: newton_kilometers}
   end
 
