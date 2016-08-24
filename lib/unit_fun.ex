@@ -1,4 +1,7 @@
 defmodule UnitFun do
+  @moduledoc """
+  Adds units to numbers in elixir to give some added type saftey when dealing with numeric quantities.
+  """
 
   alias UnitFun.Components.Equality
   alias UnitFun.Components.Multiply
@@ -9,11 +12,12 @@ defmodule UnitFun do
   alias UnitFun.Units.UnitSimplifier
   alias UnitFun.UnitTypes
 
-  def equal(left, right),    do: left |> Equality.equal(right)       |> simplify
   def multiply(left, right), do: left |> Multiply.multiply(right)    |> simplify
   def divide(left, right),   do: left |> Divide.divide(right)        |> simplify
   def add(left, right),      do: left |> AddSubtract.add(right)      |> simplify
   def subtract(left, right), do: left |> AddSubtract.subtract(right) |> simplify
+
+  def equal(left, right),    do: left |> Equality.equal(right)
 
   def with_units(value, units),   do: UnitTypes.with_units(value, units)
   def assert_units(value, units), do: Assert.assert_units(value, units)
