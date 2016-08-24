@@ -42,7 +42,7 @@ defmodule UnitFun.Units.UnitSimplifier do
       |> Enum.group_by(fn t ->
         t.__struct__
       end)
-      |> Enum.map(fn {type, dupes} ->{type, Enum.count(dupes)} end)
+      |> Enum.map(fn {type, dupes} -> {type, Enum.count(dupes)} end)
   end
 
   defp combine_with(numerators, denominators) do
