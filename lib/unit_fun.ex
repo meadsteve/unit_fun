@@ -120,8 +120,49 @@ defmodule UnitFun do
   """
   def divide(left, right),   do: left |> Divide.divide(right)        |> simplify
 
+  @doc ~S"""
+  Equality. Two values will only be considered equal if they have the same value and units.
+  If the units can be converted in to one or another this will be attempted first.
+  If the units do not match and they can't be converted an error will be raised.
+
+  ## Examples
+
+  ### Plain values
+    iex> UnitFun.equal(5, 5)
+    true
+
+  ### Both values have the same value & units
+    iex> left  = 6 |> UnitFun.with_units(UnitFun.Examples.SimpleUnit)
+    iex> right = 6 |> UnitFun.with_units(UnitFun.Examples.SimpleUnit)
+    iex> UnitFun.equal(left, right)
+    true
+
+  ### Both values have the same value but different units
+    iex> left  = 6 |> UnitFun.with_units(UnitFun.Examples.SimpleUnit)
+    iex> right = 6 |> UnitFun.with_units(UnitFun.Examples.OtherUnit)
+    iex> UnitFun.equal(left, right)
+    ** (UnitFun.Errors.CannotCompareError) Can't compare Elixir.UnitFun.Examples.SimpleUnit to Elixir.UnitFun.Examples.OtherUnit. No conversions into Elixir.UnitFun.Examples.SimpleUnit implemented
+
+  """
   def equal(left, right),    do: left |> Equality.equal(right)
 
+  @doc ~S"""
+  Takes a bare value and creates a quantitiy with units.
+
+  ## Examples
+
+  ### Plain values
+    iex> x = UnitFun.with_units(5, UnitFun.Examples.SimpleUnit)
+    iex> x |> UnitFun.assert_units(UnitFun.Examples.SimpleUnit)
+    iex> x.value
+    5
+
+  ### It will attempt to convert to new units but fail if a conversion isn't defined
+    iex> x = UnitFun.with_units(5, UnitFun.Examples.SimpleUnit)
+    iex> y = UnitFun.with_units(x, UnitFun.Examples.OtherUnit)
+    ** (UnitFun.Errors.MissingConversionError) No conversions into Elixir.UnitFun.Examples.OtherUnit implemented
+
+  """
   def with_units(value, units),   do: UnitTypes.with_units(value, units)
   def assert_units(value, units), do: Assert.assert_units(value, units)
 
