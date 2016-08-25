@@ -61,6 +61,35 @@ defmodule UnitFun do
 
   """
   def subtract(left, right), do: left |> AddSubtract.subtract(right) |> simplify
+
+  @doc ~S"""
+  Multiples two quantities together. If either or both quantities have units
+  new composite units will be created.
+
+  ## Examples
+
+  ### Plain values
+    iex> UnitFun.multiply(2, 3)
+    6
+
+  ### One united value and one plain number
+    iex> left  = 5 |> UnitFun.with_units(UnitFun.Examples.SimpleUnit)
+    iex> right = 2
+    iex> answer = UnitFun.multiply(left, right)
+    iex> answer |> UnitFun.assert_units(UnitFun.Examples.SimpleUnit)
+    iex> answer.value
+    10
+
+  ### Both united numbers
+    iex> left  = 5 |> UnitFun.with_units(UnitFun.Examples.SimpleUnit)
+    iex> right = 2 |> UnitFun.with_units(UnitFun.Examples.SimpleUnit)
+    iex> answer = UnitFun.multiply(left, right)
+    iex> square_units = UnitFun.multiply(UnitFun.Examples.SimpleUnit, UnitFun.Examples.SimpleUnit)
+    iex> answer |> UnitFun.assert_units(square_units)
+    iex> answer.value
+    10
+
+  """
   def multiply(left, right), do: left |> Multiply.multiply(right)    |> simplify
   def divide(left, right),   do: left |> Divide.divide(right)        |> simplify
 
