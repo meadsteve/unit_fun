@@ -91,6 +91,33 @@ defmodule UnitFun do
 
   """
   def multiply(left, right), do: left |> Multiply.multiply(right)    |> simplify
+
+  @doc ~S"""
+  Divides the left by the right. If either or both quantities have units
+  new composite units will be created.
+
+  ## Examples
+
+  ### Plain values
+    iex> UnitFun.divide(6, 3)
+    2.0
+
+  ### Both values have the same units
+    iex> left  = 8 |> UnitFun.with_units(UnitFun.Examples.SimpleUnit)
+    iex> right = 2 |> UnitFun.with_units(UnitFun.Examples.SimpleUnit)
+    iex> UnitFun.divide(left, right)
+    4.0
+
+  ### Both values have units but they are different
+    iex> left  = 8 |> UnitFun.with_units(UnitFun.Examples.SimpleUnit)
+    iex> right = 2 |> UnitFun.with_units(UnitFun.Examples.OtherUnit)
+    iex> answer = UnitFun.divide(left, right)
+    iex> simple_per_other_units = UnitFun.divide(UnitFun.Examples.SimpleUnit, UnitFun.Examples.OtherUnit)
+    iex> answer |> UnitFun.assert_units(simple_per_other_units)
+    iex> answer.value
+    4.0
+
+  """
   def divide(left, right),   do: left |> Divide.divide(right)        |> simplify
 
   def equal(left, right),    do: left |> Equality.equal(right)
