@@ -164,6 +164,23 @@ defmodule UnitFun do
 
   """
   def with_units(value, units),   do: UnitTypes.with_units(value, units)
+
+  @doc ~S"""
+  Raises an error unless the units are as asserted
+
+  ## Examples
+
+  ### valid assertion - no error thrown
+    iex> x = UnitFun.with_units(5, UnitFun.Examples.SimpleUnit)
+    iex> y = x |> UnitFun.assert_units(UnitFun.Examples.SimpleUnit)
+    iex> y.value
+    5
+
+  ### Returns false when values don't have units
+    iex> 6 |> UnitFun.assert_units(UnitFun.Examples.SimpleUnit)
+    ** (UnitFun.Errors.UnitAssertionError) Expected value with units Elixir.UnitFun.Examples.SimpleUnit; Got: 6
+
+  """
   def assert_units(value, units), do: Assert.assert_units(value, units)
 
   defp simplify(unit), do: UnitSimplifier.simplify_unit(unit)
