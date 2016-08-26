@@ -1,4 +1,6 @@
 defmodule UnitFun.Components.Divide do
+  @moduledoc false
+
   alias UnitFun.Value
   alias UnitFun.Errors.MissingConversionError
   alias UnitFun.Units.CompositeUnit

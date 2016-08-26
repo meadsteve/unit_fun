@@ -1,4 +1,6 @@
 defmodule UnitFun.Components.Multiply do
+  @moduledoc false
+
   alias UnitFun.Value
   alias UnitFun.Units.CompositeUnit
   alias UnitFun.Maths.MultiplicationMaths

@@ -1,4 +1,6 @@
 defmodule UnitFun.Components.Equality do
+  @moduledoc false
+
   alias UnitFun.Value
   import UnitFun.Conversion.ConversionHelper, only: [convert_to: 2]
 

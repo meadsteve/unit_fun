@@ -1,4 +1,6 @@
 defmodule UnitFun.Conversion.ConversionHelper do
+  @moduledoc false
+
   alias UnitFun.Convertor
   alias UnitFun.Units.CompositeUnit
   alias UnitFun.Errors.MissingConversionError

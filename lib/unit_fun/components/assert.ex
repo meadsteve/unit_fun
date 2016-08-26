@@ -1,4 +1,6 @@
 defmodule UnitFun.Components.Assert do
+  @moduledoc false
+
   alias UnitFun.Value
   alias UnitFun.Errors.UnitAssertionError
 

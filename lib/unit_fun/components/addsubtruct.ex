@@ -1,4 +1,6 @@
 defmodule UnitFun.Components.AddSubtract do
+  @moduledoc false
+
   alias UnitFun.Value
   alias UnitFun.Maths.AddSubtractMaths
   import UnitFun.Conversion.ConversionHelper, only: [convert_to: 2]
