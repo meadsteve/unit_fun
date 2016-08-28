@@ -2,11 +2,9 @@ defmodule UnitFun.Unit do
   @moduledoc """
   `Use`ed by a module to generate the definition of a unit. For example the
   following code would define Pence:
-      ```
       defmodule Pence do
         use UnitFun.Unit
       end
-      ```
   """
 
   defmacro __using__(_opts) do

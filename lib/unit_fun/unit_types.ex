@@ -1,12 +1,10 @@
 defmodule UnitFun.UnitTypes do
   @moduledoc """
   Provides functions for applying units on top of bare values. Normally imported
-      ```
       import UnitFun.UnitTypes
       ten_pence = 10 |> with_units(Pence)
       # or
       twenty_pence = 20 <~ Pence
-      ```
   """
   alias UnitFun.Value
   alias UnitFun.Units.CompositeUnit
