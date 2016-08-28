@@ -1,4 +1,6 @@
 defmodule UnitFun.Units.UnitSimplifier do
+  @moduledoc false
+
   alias UnitFun.Units.CompositeUnit
 
   def simplify_unit(%UnitFun.Value{value: value, units: units}) do

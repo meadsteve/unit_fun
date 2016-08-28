@@ -1,5 +1,8 @@
 defmodule UnitFun.MathsOperators do
-
+  @moduledoc """
+  `Use`ing this macro replaces the kernel maths functions with unit aware
+  ones.
+  """
   defmacro __using__(_opts) do
     quote do
       import Kernel, except: [{:+, 2}, {:-, 2}, {:==, 2}, {:*, 2}, {:/, 2}]
