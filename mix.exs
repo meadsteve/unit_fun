@@ -40,7 +40,8 @@ defmodule UnitFun.Mixfile do
   defp deps do
     [
       {:credo, "~> 0.4", only: [:dev, :test]},
-      {:ex_doc, "~> 0.13.0", only: :dev}
+      {:dialyxir, "~> 0.3.5", only: [:dev, :test]},
+      {:ex_doc, "~> 0.13.0", only: [:dev]},
     ]
   end
 end
