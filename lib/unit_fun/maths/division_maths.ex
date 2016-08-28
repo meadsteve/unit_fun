@@ -1,4 +1,8 @@
 defprotocol UnitFun.Maths.DivisionMaths do
+  @moduledoc """
+  Implementing this protocol allows custom division.
+  """
+
   @fallback_to_any true
 
   def divide(units, left, right)

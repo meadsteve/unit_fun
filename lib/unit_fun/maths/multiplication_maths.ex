@@ -1,4 +1,8 @@
 defprotocol UnitFun.Maths.MultiplicationMaths do
+  @moduledoc """
+  Implementing this protocol allows custom multiplication.
+  """
+
   @fallback_to_any true
 
   def multiply(units, left, right)

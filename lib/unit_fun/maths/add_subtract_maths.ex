@@ -1,4 +1,7 @@
 defprotocol UnitFun.Maths.AddSubtractMaths do
+  @moduledoc """
+  Implementing this protocol allows custom additon / subtraction to occur.
+  """
   @fallback_to_any true
 
   def add(units, left, right)
