@@ -162,7 +162,7 @@ defmodule UnitFun do
 
   ### It will attempt to convert to new units but fail if a conversion isn't defined
       iex> x = UnitFun.with_units(5, UnitFun.Examples.SimpleUnit)
-      iex> y = UnitFun.with_units(x, UnitFun.Examples.OtherUnit)
+      iex> UnitFun.with_units(x, UnitFun.Examples.OtherUnit)
       ** (UnitFun.Errors.MissingConversionError) No conversions into Elixir.UnitFun.Examples.OtherUnit implemented
 
   """
@@ -187,4 +187,10 @@ defmodule UnitFun do
   def assert_units(value, units), do: Assert.assert_units(value, units)
 
   defp simplify(unit), do: UnitSimplifier.simplify_unit(unit)
+
+  @spec spec_example(UnitFun.Examples.SimpleUnit.t) :: any
+  def spec_example(thing) do
+    thing.value
+  end
+
 end
