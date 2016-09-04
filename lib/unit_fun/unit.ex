@@ -15,6 +15,8 @@ defmodule UnitFun.Unit do
 
       @unit_atom __MODULE__
 
+      @type t :: %UnitFun.Value{value: any, units: %__MODULE__{}}
+
       def unit do
         %@unit_atom{}
       end
