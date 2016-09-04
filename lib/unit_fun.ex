@@ -165,6 +165,14 @@ defmodule UnitFun do
       iex> UnitFun.with_units(x, UnitFun.Examples.OtherUnit)
       ** (UnitFun.Errors.MissingConversionError) No conversions into Elixir.UnitFun.Examples.OtherUnit implemented
 
+  ### It will converted units when conversion is defined
+      iex> x = UnitFun.with_units(5, UnitFun.Examples.OtherUnit)
+      iex> y = UnitFun.with_units(x, UnitFun.Examples.OtherUnitConverted)
+      iex> y.value
+      10
+
+      UnitFun.Examples.OtherConvertedUnit
+
   """
   def with_units(value, units),   do: UnitTypes.with_units(value, units)
 

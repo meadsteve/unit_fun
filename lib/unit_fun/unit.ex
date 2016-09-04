@@ -9,6 +9,7 @@ defmodule UnitFun.Unit do
 
   defmacro __using__(_opts) do
     quote do
+      import UnitFun.Dsl
       @behaviour UnitFun.UnitDefinition
 
       defstruct size: 1, type: :primitive_unit

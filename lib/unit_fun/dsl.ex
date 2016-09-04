@@ -12,4 +12,16 @@ defmodule UnitFun.Dsl do
     end
   end
 
+  defmacro def_conversion(from_units, into_units, fun) do
+    quote do
+      defimpl UnitFun.Convertor, for: unquote(into_units) do
+        @moduledoc false
+
+        def convert(_, unquote(from_units), value) do
+          unquote(fun).(value)
+        end
+      end
+    end
+  end
+
 end
