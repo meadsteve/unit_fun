@@ -188,9 +188,4 @@ defmodule UnitFun do
 
   defp simplify(unit), do: UnitSimplifier.simplify_unit(unit)
 
-  @spec spec_example(UnitFun.Examples.SimpleUnit.t) :: any
-  def spec_example(thing) do
-    thing.value
-  end
-
 end
