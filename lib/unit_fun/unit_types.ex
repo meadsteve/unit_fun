@@ -17,11 +17,11 @@ defmodule UnitFun.UnitTypes do
   ## Examples
 
   ### With a module defined as units
-      iex> 5 |> UnitFun.with_units(UnitFun.Examples.SimpleUnit)
+      iex> 5 |> UnitFun.UnitTypes.with_units(UnitFun.Examples.SimpleUnit)
       %UnitFun.Value{units: %UnitFun.Examples.SimpleUnit{size: 1, type: :primitive_unit}, value: 5}
 
   ### Errors thrown for undefined units
-      iex> 5 |> UnitFun.with_units(:anyoldatom)
+      iex> 5 |> UnitFun.UnitTypes.with_units(:anyoldatom)
       ** (UnitFun.Errors.MissingUnitsError) Units anyoldatom are not defined
 
   """
@@ -50,6 +50,15 @@ defmodule UnitFun.UnitTypes do
     %Value{value: value, units: unit}
   end
 
+  @doc ~S"""
+  <~ is provided as a shorthand for calling with_units
+
+  ## Example usage
+      iex> import UnitFun.UnitTypes
+      iex> 5 <~ UnitFun.Examples.SimpleUnit
+      %UnitFun.Value{units: %UnitFun.Examples.SimpleUnit{size: 1, type: :primitive_unit}, value: 5}
+
+  """
   def left <~ right do
     with_units(left, right)
   end
