@@ -20,7 +20,7 @@ defmodule UnitFun.UnitTypes do
       iex> 5 |> UnitFun.with_units(UnitFun.Examples.SimpleUnit)
       %UnitFun.Value{units: %UnitFun.Examples.SimpleUnit{size: 1, type: :primitive_unit}, value: 5}
 
-  ###
+  ### Errors thrown for undefined units
       iex> 5 |> UnitFun.with_units(:anyoldatom)
       ** (UnitFun.Errors.MissingUnitsError) Units anyoldatom are not defined
 
