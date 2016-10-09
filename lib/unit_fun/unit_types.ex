@@ -9,7 +9,22 @@ defmodule UnitFun.UnitTypes do
   alias UnitFun.Value
   alias UnitFun.Units.CompositeUnit
   alias UnitFun.Conversion.ConversionHelper
+  alias UnitFun.Errors.MissingUnitsError
 
+  @doc ~S"""
+  Takes a bare value and wraps it in a struct with units.
+
+  ## Examples
+
+  ### With a module defined as units
+      iex> 5 |> UnitFun.with_units(UnitFun.Examples.SimpleUnit)
+      %UnitFun.Value{units: %UnitFun.Examples.SimpleUnit{size: 1, type: :primitive_unit}, value: 5}
+
+  ###
+      iex> 5 |> UnitFun.with_units(:anyoldatom)
+      ** (UnitFun.Errors.MissingUnitsError) Units anyoldatom are not defined
+
+  """
   def with_units(%Value{} = value, new_units) when is_atom(new_units) do
     with_units(value, new_units.unit)
   end
@@ -23,7 +38,12 @@ defmodule UnitFun.UnitTypes do
   end
 
   def with_units(value, unit_module) when is_atom(unit_module) do
-    %Value{value: value, units: unit_module.unit}
+    try do
+      %Value{value: value, units: unit_module.unit}
+    rescue
+      _error in UndefinedFunctionError
+        -> raise MissingUnitsError, message: "Units #{unit_module} are not defined"
+    end
   end
 
   def with_units(value, %{type: :primitive_unit} = unit) do

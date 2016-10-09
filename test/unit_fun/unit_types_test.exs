@@ -8,6 +8,8 @@ defmodule UnitFun.UnitTypesTest do
   alias UnitFun.UnitTypesTest.Miles
   alias UnitFun.UnitTypesTest.Newtons
 
+  doctest UnitFun.UnitTypes
+
   test "with_units function converts to appropriate struct" do
     value = 2 |> with_units(Kilometers)
     assert value == %Value{value: 2, units: Kilometers.unit}
