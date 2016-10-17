@@ -108,7 +108,7 @@ defimpl UnitFun.Convertor, for: UnitFun.ConvertorComplexTest.Pascals do
 end
 ```
 
-## Example - Custom mathmatic functions.
+## Example - Custom mathematic functions.
 All the maths is controlled by protocols.
 So for example if you decided pence should only be handled as integers (so rounding isn't an issue) the following
 protocol could be defined:
