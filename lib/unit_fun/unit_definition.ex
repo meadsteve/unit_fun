@@ -4,5 +4,6 @@ defmodule UnitFun.UnitDefinition do
   """
 
   @callback unit() :: any
+  @callback facts() :: [any]
 
 end
