@@ -11,6 +11,6 @@ defimpl UnitFun.Validation.Validateable, for: Any do
   def valid?(units, value) do
     units.facts()
     |> Enum.map(fn fact -> fact.(value) end)
-    |> Enum.all?(fn result -> result == true end)
+    |> Enum.all?(&(&1 == true))
   end
 end
