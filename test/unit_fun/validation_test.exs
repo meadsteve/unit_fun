@@ -4,16 +4,27 @@ defmodule UnitFun.Validation.UnitTests do
   alias UnitFun.Examples.SimpleUnit
   alias UnitFun.Examples.PositiveUnit
 
+  import UnitFun.UnitTypes
+
   test "Units without facts are always valid" do
-    assert UnitFun.Validation.Validateable.valid?(SimpleUnit, 10)
+    10
+    |> with_units(SimpleUnit)
+    |> UnitFun.Validation.valid?
+    |> assert
   end
 
   test "Units with a single fact are valid if the fact is true" do
-    assert UnitFun.Validation.Validateable.valid?(PositiveUnit, 10)
+    10
+    |> with_units(PositiveUnit)
+    |> UnitFun.Validation.valid?
+    |> assert
   end
 
   test "Units with a single fact are invalid if the fact is false" do
-    assert UnitFun.Validation.Validateable.valid?(PositiveUnit, -10) === false
+    -10
+    |> with_units(PositiveUnit)
+    |> UnitFun.Validation.valid?
+    |> refute
   end
 
 end
