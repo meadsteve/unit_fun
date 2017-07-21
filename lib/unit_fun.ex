@@ -35,7 +35,7 @@ defmodule UnitFun do
       ** (UnitFun.Errors.MissingConversionError) No conversions into Elixir.UnitFun.Examples.SimpleUnit implemented
 
   """
-  def add(left, right),      do: left |> AddSubtract.add(right)      |> simplify
+  def add(left, right), do: left |> AddSubtract.add(right) |> simplify |> validate
 
   @doc ~S"""
   Subtracts one value from the other. If the units mismatch a conversion will be attempted
@@ -95,7 +95,7 @@ defmodule UnitFun do
       10
 
   """
-  def multiply(left, right), do: left |> Multiply.multiply(right)    |> simplify |> validate
+  def multiply(left, right), do: left |> Multiply.multiply(right) |> simplify |> validate
 
   @doc ~S"""
   Divides the left by the right. If either or both quantities have units
@@ -123,7 +123,7 @@ defmodule UnitFun do
       4.0
 
   """
-  def divide(left, right),   do: left |> Divide.divide(right)        |> simplify |> validate
+  def divide(left, right), do: left |> Divide.divide(right) |> simplify |> validate
 
   @doc ~S"""
   Equality. Two values will only be considered equal if they have the same value and units.
@@ -152,7 +152,7 @@ defmodule UnitFun do
       ** (UnitFun.Errors.CannotCompareError) Can't compare Elixir.UnitFun.Examples.SimpleUnit to Elixir.UnitFun.Examples.OtherUnit. No conversions into Elixir.UnitFun.Examples.SimpleUnit implemented
 
   """
-  def equal(left, right),    do: left |> Equality.equal(right)
+  def equal(left, right), do: left |> Equality.equal(right)
 
   @doc ~S"""
   Takes a bare value and creates a quantitiy with units.
@@ -171,7 +171,7 @@ defmodule UnitFun do
       ** (UnitFun.Errors.MissingConversionError) No conversions into Elixir.UnitFun.Examples.OtherUnit implemented
 
   """
-  def with_units(value, units),   do: UnitTypes.with_units(value, units) |> validate
+  def with_units(value, units),  do: UnitTypes.with_units(value, units) |> validate
 
   @doc ~S"""
   Raises an error unless the units are as asserted
