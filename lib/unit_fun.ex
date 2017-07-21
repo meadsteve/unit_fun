@@ -8,6 +8,7 @@ defmodule UnitFun do
   alias UnitFun.Components.Divide
   alias UnitFun.Components.AddSubtract
   alias UnitFun.Components.Assert
+  alias UnitFun.Validation.Assertions, as: ValidationAssertions
 
   alias UnitFun.Units.UnitSimplifier
   alias UnitFun.UnitTypes
@@ -170,8 +171,11 @@ defmodule UnitFun do
       iex> UnitFun.with_units(x, UnitFun.Examples.OtherUnit)
       ** (UnitFun.Errors.MissingConversionError) No conversions into Elixir.UnitFun.Examples.OtherUnit implemented
 
+  ### It'll raise an error if the new value cannot be represented by the units
+      iex> UnitFun.with_units(-5, UnitFun.Examples.PositiveUnit)
+      ** (UnitFun.Errors.InvalidValueError) Value: -5 is not valid for Elixir.UnitFun.Examples.PositiveUnit
   """
-  def with_units(value, units),  do: UnitTypes.with_units(value, units) |> validate
+  def with_units(value, units),  do: value |> UnitTypes.with_units(units) |> validate
 
   @doc ~S"""
   Raises an error unless the units are as asserted
@@ -194,7 +198,7 @@ defmodule UnitFun do
   defp simplify(unit), do: UnitSimplifier.simplify_unit(unit)
 
   defp validate(x) do
-    UnitFun.Validation.Assertions.assert_constraints(x)
+    ValidationAssertions.assert_constraints(x)
     x
   end
 

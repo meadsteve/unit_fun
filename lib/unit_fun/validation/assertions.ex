@@ -1,9 +1,12 @@
 defmodule UnitFun.Validation.Assertions do
   @moduledoc false
 
+  alias UnitFun.Validation
+  alias UnitFun.Errors.InvalidValueError
+
   def assert_constraints(%UnitFun.Value{value: value, units: units} = x) do
-    if not UnitFun.Validation.valid?(x) do
-      raise UnitFun.Errors.InvalidValueError, message: "Value: #{value} is not valid for #{units}"
+    if not Validation.valid?(x) do
+      raise InvalidValueError, message: "Value: #{value} is not valid for #{units}"
     end
   end
 
