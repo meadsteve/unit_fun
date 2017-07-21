@@ -66,6 +66,8 @@ defmodule UnitFun.Units.CompositeUnit do
     multiply_unit(complex, unit)
   end
 
+  def facts(), do: []
+
   defp order_elements(%__MODULE__{} = initial) do
     %{initial |
       numerators: sort_types(initial.numerators),

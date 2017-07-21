@@ -8,6 +8,7 @@ defmodule UnitFun do
   alias UnitFun.Components.Divide
   alias UnitFun.Components.AddSubtract
   alias UnitFun.Components.Assert
+  alias UnitFun.Validation.Assertions, as: ValidationAssertions
 
   alias UnitFun.Units.UnitSimplifier
   alias UnitFun.UnitTypes
@@ -35,7 +36,7 @@ defmodule UnitFun do
       ** (UnitFun.Errors.MissingConversionError) No conversions into Elixir.UnitFun.Examples.SimpleUnit implemented
 
   """
-  def add(left, right),      do: left |> AddSubtract.add(right)      |> simplify
+  def add(left, right), do: left |> AddSubtract.add(right) |> simplify |> validate
 
   @doc ~S"""
   Subtracts one value from the other. If the units mismatch a conversion will be attempted
@@ -59,8 +60,13 @@ defmodule UnitFun do
       iex> UnitFun.subtract(left, right).value
       ** (UnitFun.Errors.MissingConversionError) No conversions into Elixir.UnitFun.Examples.SimpleUnit implemented
 
+  ### Invalid Values
+      iex> left  = 5 |> UnitFun.with_units(UnitFun.Examples.PositiveUnit)
+      iex> right = 7 |> UnitFun.with_units(UnitFun.Examples.PositiveUnit)
+      iex> UnitFun.subtract(left, right).value
+      ** (UnitFun.Errors.InvalidValueError) Value: -2 is not valid for Elixir.UnitFun.Examples.PositiveUnit
   """
-  def subtract(left, right), do: left |> AddSubtract.subtract(right) |> simplify
+  def subtract(left, right), do: left |> AddSubtract.subtract(right) |> simplify |> validate
 
   @doc ~S"""
   Multiples two quantities together. If either or both quantities have units
@@ -90,7 +96,7 @@ defmodule UnitFun do
       10
 
   """
-  def multiply(left, right), do: left |> Multiply.multiply(right)    |> simplify
+  def multiply(left, right), do: left |> Multiply.multiply(right) |> simplify |> validate
 
   @doc ~S"""
   Divides the left by the right. If either or both quantities have units
@@ -118,7 +124,7 @@ defmodule UnitFun do
       4.0
 
   """
-  def divide(left, right),   do: left |> Divide.divide(right)        |> simplify
+  def divide(left, right), do: left |> Divide.divide(right) |> simplify |> validate
 
   @doc ~S"""
   Equality. Two values will only be considered equal if they have the same value and units.
@@ -147,7 +153,7 @@ defmodule UnitFun do
       ** (UnitFun.Errors.CannotCompareError) Can't compare Elixir.UnitFun.Examples.SimpleUnit to Elixir.UnitFun.Examples.OtherUnit. No conversions into Elixir.UnitFun.Examples.SimpleUnit implemented
 
   """
-  def equal(left, right),    do: left |> Equality.equal(right)
+  def equal(left, right), do: left |> Equality.equal(right)
 
   @doc ~S"""
   Takes a bare value and creates a quantitiy with units.
@@ -165,8 +171,11 @@ defmodule UnitFun do
       iex> UnitFun.with_units(x, UnitFun.Examples.OtherUnit)
       ** (UnitFun.Errors.MissingConversionError) No conversions into Elixir.UnitFun.Examples.OtherUnit implemented
 
+  ### It'll raise an error if the new value cannot be represented by the units
+      iex> UnitFun.with_units(-5, UnitFun.Examples.PositiveUnit)
+      ** (UnitFun.Errors.InvalidValueError) Value: -5 is not valid for Elixir.UnitFun.Examples.PositiveUnit
   """
-  def with_units(value, units),   do: UnitTypes.with_units(value, units)
+  def with_units(value, units),  do: value |> UnitTypes.with_units(units) |> validate
 
   @doc ~S"""
   Raises an error unless the units are as asserted
@@ -187,5 +196,10 @@ defmodule UnitFun do
   def assert_units(value, units), do: Assert.assert_units(value, units)
 
   defp simplify(unit), do: UnitSimplifier.simplify_unit(unit)
+
+  defp validate(x) do
+    ValidationAssertions.assert_constraints(x)
+    x
+  end
 
 end

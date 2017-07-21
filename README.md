@@ -124,3 +124,25 @@ end
 ```
 Now any addition using non integer quantities will raise a FunctionClauseError.
 For convinience if nothing is defined then the kernel +-/* are used.
+
+## Example - Facts about units
+
+It's possible to define units with facts that must always hold true. This is handled
+by defining a list of functions that return true or false.
+
+```elixir
+defmodule UnitFun.Examples.PositiveUnit do
+  @moduledoc false
+  use UnitFun.Unit
+
+  defp greater_than_zero(x), do: x >= 0
+
+  facts [
+    &greater_than_zero/1
+  ]
+
+end
+```
+
+Now whenever a `PositiveUnit` value is constructed the greater_than_zero callback will be executed.
+If this returns False then an InvalidValueError will be raised.

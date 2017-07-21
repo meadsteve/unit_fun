@@ -13,8 +13,8 @@ defmodule UnitFun.Mixfile do
         licenses: ["MIT"],
         links: %{"GitHub" => "https://github.com/meadsteve/unit_fun"},
       ],
-      version: "0.5.4",
-      elixir: "~> 1.0",
+      version: "0.6.0",
+      elixir: "~> 1.1",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
       deps: deps
