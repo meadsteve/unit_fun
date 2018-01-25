@@ -11,5 +11,4 @@ defmodule UnitFun.Dsl do
       end
     end
   end
-
 end

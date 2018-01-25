@@ -14,8 +14,8 @@ defmodule UnitFun.Components.Equality do
   def equal(%Value{} = left, %Value{} = right) do
     try do
       right
-        |> convert_to(left.units)
-        |> equal(left)
+      |> convert_to(left.units)
+      |> equal(left)
     rescue
       e in MissingConversionError -> raise_cannot_compare_error(e, left, right)
     end
@@ -29,5 +29,4 @@ defmodule UnitFun.Components.Equality do
     message = "Can't compare #{left.units} to #{right.units}. " <> e.message
     raise CannotCompareError, message: message
   end
-
 end

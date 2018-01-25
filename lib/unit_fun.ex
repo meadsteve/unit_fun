@@ -175,7 +175,7 @@ defmodule UnitFun do
       iex> UnitFun.with_units(-5, UnitFun.Examples.PositiveUnit)
       ** (UnitFun.Errors.InvalidValueError) Value: -5 is not valid for Elixir.UnitFun.Examples.PositiveUnit
   """
-  def with_units(value, units),  do: value |> UnitTypes.with_units(units) |> validate
+  def with_units(value, units), do: value |> UnitTypes.with_units(units) |> validate
 
   @doc ~S"""
   Raises an error unless the units are as asserted
@@ -201,5 +201,4 @@ defmodule UnitFun do
     ValidationAssertions.assert_constraints(x)
     x
   end
-
 end

@@ -18,7 +18,7 @@ defimpl UnitFun.Convertor, for: UnitFun.ExampleTest.Kilometers do
   alias UnitFun.ExampleTest.Miles
 
   def convert(_, Miles, value) do
-    (value * 1.6)
+    value * 1.6
   end
 end
 
@@ -30,8 +30,9 @@ end
 defimpl UnitFun.Maths.AddSubtractMaths, for: UnitFun.ExampleTest.Pence do
   @moduledoc false
   def add(_, left, right) when is_integer(left) and is_integer(right) do
-     left + right
+    left + right
   end
+
   def subtract(_, left, right) when is_integer(left) and is_integer(right) do
     left - right
   end

@@ -19,5 +19,4 @@ defmodule UnitFun.Components.Assert do
   def assert_units(left, right) do
     raise UnitAssertionError, message: "Expected value with units #{right}; Got: #{inspect(left)}"
   end
-
 end

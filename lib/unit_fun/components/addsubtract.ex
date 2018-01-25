@@ -24,5 +24,4 @@ defmodule UnitFun.Components.AddSubtract do
   def subtract(left, right) do
     left - right
   end
-
 end

@@ -29,5 +29,4 @@ defmodule UnitFun.MathsOperators do
       end
     end
   end
-
 end

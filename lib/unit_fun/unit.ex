@@ -35,22 +35,21 @@ defmodule UnitFun.Unit do
   end
 
   defmacro __before_compile__(_env) do
-      quote do
-        unless @facts_defined do
-          def facts do
-            []
-          end
-       end
-     end
-    end
-
-    defmacro facts(list_of_facts) do
-      quote do
-        @facts_defined true
+    quote do
+      unless @facts_defined do
         def facts do
-          unquote list_of_facts
+          []
         end
       end
     end
+  end
 
+  defmacro facts(list_of_facts) do
+    quote do
+      @facts_defined true
+      def facts do
+        unquote(list_of_facts)
+      end
+    end
+  end
 end

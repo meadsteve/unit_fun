@@ -5,7 +5,7 @@ defmodule UnitFun.Components.Multiply do
   alias UnitFun.Units.CompositeUnit
   alias UnitFun.Maths.MultiplicationMaths
 
-  def multiply(left, right) when is_atom(left) or is_atom(right)  do
+  def multiply(left, right) when is_atom(left) or is_atom(right) do
     left |> CompositeUnit.multiply_unit(right)
   end
 
@@ -27,5 +27,4 @@ defmodule UnitFun.Components.Multiply do
   def multiply(left, right) do
     left * right
   end
-
 end

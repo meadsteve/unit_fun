@@ -11,5 +11,4 @@ defmodule UnitFun.Validation.Assertions do
   end
 
   def assert_constraints(_), do: nil
-
 end

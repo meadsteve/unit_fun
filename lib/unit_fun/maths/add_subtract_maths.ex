@@ -9,6 +9,6 @@ defprotocol UnitFun.Maths.AddSubtractMaths do
 end
 
 defimpl UnitFun.Maths.AddSubtractMaths, for: Any do
-  def add(_, left, right),      do: left + right
+  def add(_, left, right), do: left + right
   def subtract(_, left, right), do: left - right
 end

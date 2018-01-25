@@ -3,5 +3,5 @@ defmodule UnitFun.Value do
   Provides a struct that represents a value with units.
   """
 
-    defstruct value: nil, units: nil
+  defstruct value: nil, units: nil
 end

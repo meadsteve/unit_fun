@@ -29,11 +29,11 @@ defmodule UnitFun.UnitTypes do
     with_units(value, new_units.unit)
   end
 
-  def with_units(%Value{} = value, new_units)  do
+  def with_units(%Value{} = value, new_units) do
     value |> ConversionHelper.convert_to(new_units)
   end
 
-  def with_units(value, composite_unit = %CompositeUnit{})  do
+  def with_units(value, composite_unit = %CompositeUnit{}) do
     %Value{value: value, units: composite_unit}
   end
 
@@ -41,8 +41,8 @@ defmodule UnitFun.UnitTypes do
     try do
       %Value{value: value, units: unit_module.unit}
     rescue
-      _error in UndefinedFunctionError
-        -> raise MissingUnitsError, message: "Units #{unit_module} are not defined"
+      _error in UndefinedFunctionError ->
+        raise MissingUnitsError, message: "Units #{unit_module} are not defined"
     end
   end
 
@@ -62,5 +62,4 @@ defmodule UnitFun.UnitTypes do
   def left <~ right do
     with_units(left, right)
   end
-
 end

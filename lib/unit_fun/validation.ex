@@ -9,5 +9,4 @@ defmodule UnitFun.Validation do
     |> Enum.map(fn fact -> fact.(value) end)
     |> Enum.all?(&(&1 == true))
   end
-
 end

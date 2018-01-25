@@ -4,8 +4,7 @@ defmodule UnitFun.Examples.PositiveUnit do
 
   defp greater_than_zero(x), do: x >= 0
 
-  facts [
+  facts([
     &greater_than_zero/1
-  ]
-
+  ])
 end

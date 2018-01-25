@@ -48,5 +48,4 @@ defmodule UnitFun.Components.Divide do
     new_value = DivisionMaths.divide(left.units, left.value, right.value)
     %Value{value: new_value, units: new_units}
   end
-
 end

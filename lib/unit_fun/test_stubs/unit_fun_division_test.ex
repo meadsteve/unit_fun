@@ -13,7 +13,6 @@ defmodule UnitFunDivisionTest.Miles do
   use UnitFun.Unit
 end
 
-
 defimpl UnitFun.Convertor, for: UnitFunDivisionTest.Meters do
   @moduledoc false
   alias UnitFunDivisionTest.Miles
