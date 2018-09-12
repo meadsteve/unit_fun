@@ -1,8 +1,9 @@
 defmodule UnitFun.Components.AddSubtract do
   @moduledoc false
 
-  alias UnitFun.Value
   alias UnitFun.Maths.AddSubtractMaths
+  alias UnitFun.Value
+
   import UnitFun.Conversion.ConversionHelper, only: [convert_to: 2]
 
   for method <- [:add, :subtract] do

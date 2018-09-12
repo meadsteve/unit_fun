@@ -3,11 +3,11 @@ defmodule UnitFun do
   Adds units to numbers in elixir to give some added type saftey when dealing with numeric quantities.
   """
 
-  alias UnitFun.Components.Equality
-  alias UnitFun.Components.Multiply
-  alias UnitFun.Components.Divide
   alias UnitFun.Components.AddSubtract
   alias UnitFun.Components.Assert
+  alias UnitFun.Components.Divide
+  alias UnitFun.Components.Equality
+  alias UnitFun.Components.Multiply
   alias UnitFun.Validation.Assertions, as: ValidationAssertions
 
   alias UnitFun.Units.UnitSimplifier

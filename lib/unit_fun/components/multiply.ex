@@ -1,9 +1,9 @@
 defmodule UnitFun.Components.Multiply do
   @moduledoc false
 
-  alias UnitFun.Value
-  alias UnitFun.Units.CompositeUnit
   alias UnitFun.Maths.MultiplicationMaths
+  alias UnitFun.Units.CompositeUnit
+  alias UnitFun.Value
 
   def multiply(left, right) when is_atom(left) or is_atom(right)  do
     left |> CompositeUnit.multiply_unit(right)

@@ -1,11 +1,11 @@
 defmodule UnitFun.Components.Divide do
   @moduledoc false
 
-  alias UnitFun.Value
-  alias UnitFun.Errors.MissingConversionError
-  alias UnitFun.Units.CompositeUnit
-  alias UnitFun.Maths.DivisionMaths
   import UnitFun.Conversion.ConversionHelper, only: [convert_to: 2]
+  alias UnitFun.Errors.MissingConversionError
+  alias UnitFun.Maths.DivisionMaths
+  alias UnitFun.Units.CompositeUnit
+  alias UnitFun.Value
 
   def divide(left, right) when is_atom(left) or is_atom(right) do
     left |> CompositeUnit.divide_unit(right)

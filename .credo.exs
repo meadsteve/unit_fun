@@ -10,7 +10,10 @@
         # Ignoring line lengths for now as I can't get credo to ignore
         # the multi line function docs. Some of which have examples which shouldn't
         # have line breaks
-        {Credo.Check.Readability.MaxLineLength, false}
+        {Credo.Check.Readability.MaxLineLength, false},
+
+        # I'm not sure I like this rule
+        {Credo.Check.Readability.PreferImplicitTry, false}
 
       ]
     }

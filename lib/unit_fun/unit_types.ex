@@ -6,10 +6,10 @@ defmodule UnitFun.UnitTypes do
       # or
       twenty_pence = 20 <~ Pence
   """
-  alias UnitFun.Value
-  alias UnitFun.Units.CompositeUnit
   alias UnitFun.Conversion.ConversionHelper
   alias UnitFun.Errors.MissingUnitsError
+  alias UnitFun.Units.CompositeUnit
+  alias UnitFun.Value
 
   @doc ~S"""
   Takes a bare value and wraps it in a struct with units.

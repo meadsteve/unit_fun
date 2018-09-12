@@ -1,8 +1,8 @@
 defmodule UnitFun.Components.Assert do
   @moduledoc false
 
-  alias UnitFun.Value
   alias UnitFun.Errors.UnitAssertionError
+  alias UnitFun.Value
 
   def assert_units(value, units) when is_atom(units) do
     assert_units(value, units.unit)

@@ -21,7 +21,6 @@ defimpl UnitFun.Maths.MultiplicationMaths, for: UnitFun.ExampleTest.Furlongs do
   end
 end
 
-
 defimpl UnitFun.Maths.DivisionMaths, for: UnitFun.ExampleTest.Furlongs do
   @moduledoc false
   def divide(_, _left, _right) do

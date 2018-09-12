@@ -2,8 +2,9 @@ defmodule UnitFun.Conversion.ConversionHelper do
   @moduledoc false
 
   alias UnitFun.Convertor
-  alias UnitFun.Units.CompositeUnit
   alias UnitFun.Errors.MissingConversionError
+  alias UnitFun.Units.CompositeUnit
+
   import UnitFun.UnitTypes
 
   def convert_to(%{units: units, value: value}, to_units) do
