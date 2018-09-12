@@ -13,7 +13,10 @@
         {Credo.Check.Readability.MaxLineLength, false},
 
         # I'm not sure I like this rule
-        {Credo.Check.Readability.PreferImplicitTry, false}
+        {Credo.Check.Readability.PreferImplicitTry, false},
+
+        # For now every case of a raise is correct - address this later potentially
+        {Credo.Check.Warning.RaiseInsideRescue, false},
 
       ]
     }
