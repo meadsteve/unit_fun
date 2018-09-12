@@ -33,7 +33,7 @@ defmodule UnitFun.UnitTypes do
     value |> ConversionHelper.convert_to(new_units)
   end
 
-  def with_units(value, composite_unit = %CompositeUnit{})  do
+  def with_units(value, %CompositeUnit{} = composite_unit)  do
     %Value{value: value, units: composite_unit}
   end
 
